@@ -1,0 +1,4 @@
+<?php
+$month_mask = ["01" => "sdi_f13c7fea0c6b4d7ea1aa684b3a6d071f", "02" => "sdi_16f3c01a7a5a4cd088a30f045f8ceb19", "03" => "sdi_77a1aa17f90e4dbaa97e0229f6e540fb", "04" => "sdi_4c0e0e32895c4d5caec2b6e40e6a9a29", "05" => "sdi_abc34649acac41d8a4714681c75bd83a", "06" => "sdi_90b9ef7f68814fb1ad4dabe8ba1e705d", "07" => "sdi_c1c601f77dc141ab81ed5a23891fa3fa", "08" => "sdi_4fb71a726d724fb98e74987373d88061", "09" => "sdi_eb4016dd4abc4b719253bb8780e3e47d", "10" => "sdi_e61466628907451fa5ef8ac39e598f5d", "11" => "sdi_c65388391f8441cc85e52982df0e302a", "12" => "sdi_27ba35278ad1454a914c0bb6f5e83796"];
+
+?>

@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Admission Form</title>
+<script type="text/javascript">
+</script>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!----------------------- date picker------------------------------------->
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+      <!-- <script>
+         $(function() {
+            $( "#datepicker-13" ).datepicker();
+            //$( "#datepicker-13" ).datepicker("show");
+         });
+         window.onload = function() {
+  document.getElementById("ffn").focus();
+};
+      </script> -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.timepicker.js"></script>
+  <script type="text/javascript" src="bootstrap-datepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="bootstrap-datepicker.css" />
+  <script type="text/javascript" src="site.js"></script>
+ 
+
+<!------------------date picker close----------------------------------------->
+  <style type="text/css">
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+.ui-widget-header {
+    border: 1px solid #1800b9 !important;
+    /* background: #f6a828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x; */
+    color: #ffffff;
+    font-weight: bold;
+    background: #1800b9 !important;
+} 
+body
+{
+  background: aliceblue;
+}
+.mj
+{
+  border: 1px solid #ffffff;
+    padding: 5%;
+}
+.form-control
+{
+  background: transparent !important;
+}
+  </style>
+<!------------------------Div hiden script start---------------------->
+  <script>
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>
+<script>
+  function myFunction1() {
+    var x = document.getElementById("myDIV1");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>
+<!-------------------------------Div hiden script closer---------------------->
+<!---------------------------------Phone no. input type javascript------------------------------>
+
+<script src="build/js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+      // geoIpLookup: function(callback) {
+      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+      //     var countryCode = (resp && resp.country) ? resp.country : "";
+      //     callback(countryCode);
+      //   });
+      // },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      // nationalMode: false,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "build/js/utils.js",
+    });
+  </script>
+
+
+<!---------------------------------Phone no. input type javascript closing--------------------------------------------->
+
+</head>
+
+
+<body>
+
+<form action="#"  autocomplete="off">
+  <div class="container mj">
+  <div class="row">
+    <div class="col-md-4"><img src="DigiPli1.png" alt="Logo" width="150px" height="118px" /></div>
+    <div class="col-md-8"><h1 style="margin-top: 40px;" class="">Open an Account</h1></div>
+  </div>
+</br></br>
+
+  <div class="row">
+          <div class="col-md-1">
+             <select class="form-control" style="padding-right:0px;" id="ffn">
+                <option>Mr.</option>
+                <option>Dr.</option>
+                <option>Ms.</option>
+                 <option>Mrs.</option>
+              </select>
+          </div>
+            <div class="col-md-3">
+               <input autofocus type="text" class="form-control"  placeholder="First Name" name="Name" required/>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="Enter Middle Name" placeholder="Middle Name" name="Middle">
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" id="Enter Last name" placeholder="Last Name" name="Last_Name" required/>
+           </div>
+           <div class="col-md-3">
+             <label for="vehicle1"> I currently use another name</label>
+             <input type="checkbox" onclick="myFunction1()" id="I currently use another name"  name="another name" value="">
+        </div>
+
+        </div>
+
+        
+<!------------------------secondery name------------------------------------------>
+     <div  style="display:none; margin-top: 2%" id="myDIV1">
+         <div class="row">
+              <div class="col-md-1">
+                  <select class="form-control" style="padding-right:0px;">
+                         <option>Mr.</option>
+                         <option>Dr.</option>
+                         <option>Ms.</option>
+                        <option>Mrs.</option>
+                  </select>
+              </div>
+             <div class="col-md-4">
+                 <input type="text" autofocus class="form-control" id="Enter First Name" placeholder="First Name" name="Name" required/>
+              </div>
+             <div class="col-md-3">
+                 <input type="text" class="form-control" id="Enter Middle Name" placeholder="Middle Name" name="Middle">
+             </div>
+              <div class="col-md-4">
+                  <input type="text" class="form-control" id="Enter Last name" placeholder="Last Name" name="Last_Name" required/>
+               </div>
+          </div>          
+      </div>
+    </br>
+
+<!--------------------------secondery Name closing ----------------------------------------->
+
+<div class="row">
+     <div class="col-md-6" id="datepairExample">
+       
+            <input type="text" class="date start form-control" placeholder="Date of Birth" />
+
+    </div>
+    <div class="col-md-6">
+        <input type="email" id="email" class="form-control" name="email" id="Enter your email" placeholder="Email" required/>
+    </div>
+</div>
+
+</br>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="input-group"> 
+               <input id="phone" name="phone" class="form-control" type="tel" placeholder="Enter Mobile Phone Number" pattern="[0-9]{10}" alert="please match correct format" required/ >
+            </div>
+        </div>
+        <div class="col-md-6">
+          <input type="Number" class="form-control" placeholder="Enter Alternate Phone Number" pattern="[0-9]{10}"  alert="please match correct format">
+        </div>
+      </div>
+    </br>
+
+      <div class="row">
+        <div class="col-md-6">
+            <textarea class="form-control" style="height:70px;" id="comment" pattern="\d+(\.\d{2})?" name="text" placeholder="Residential Address Line 1" required/></textarea>
+        </div>
+        <div class="col-md-6">
+          <textarea class="form-control" style="height:70px;" id="comment" name="text" placeholder="Residential Address Line 2"></textarea>
+        </div>
+      </div>
+
+      </br>
+  <div class="row">
+    <div class="col-md-3">
+       <input type="text" class="form-control" id="City" placeholder="City" name="City" required/>
+    </div>
+    <div class="col-md-3">
+        <input type="text" class="form-control" id="State" placeholder="State" name="State" required/>
+    </div>
+    <div class="col-md-3">
+        <input type="text" class="form-control" id="Zip Code" type="text" pattern="[0-9]{5}" placeholder="Zip Code" name="Zip Code" match="(/[0-9]/))" required/>
+    </div>
+    <div class="col-md-3">
+      <!-------------------------
+      <input type="text" class="form-control" id="Country" placeholder="Enter Country" name="Country" required/>
+      --------------------->
+
+       <select class="form-control" id="Country" placeholder="Select Country" name="Select Country" required/>
+                <option value="">Select Country</option>
+                <option>UNITED STATES</option>
+                <option>AFGHANISTAN</option>
+                <option>ÅLAND ISLANDS</option>
+                 <option>ALBANIA</option>
+                 <option>ALGERIA</option>
+                 <option>AMERICAN SAMOA</option>
+                 <option>ANDORRA</option>
+                 <option>ANGOLA</option>
+                 <option>ANGUILLA</option>
+                 <option>ANTARCTICA</option>
+                 <option>ANTIGUA AND BARBUDA</option>
+                 <option>ARGENTINA</option>
+                 <option>ARMENIA</option>
+                 <option>ARUBA</option>
+                 <option>AUSTRALIA</option>
+                 <option>AUSTRIA</option>
+                 <option>AZERBAIJAN</option>
+                 <option>BAHAMAS</option>
+                 <option>BAHRAIN</option>
+                 <option>BANGLADESH</option>
+                 <option>BARBADOS</option>
+                 <option>BELARUS</option>
+                 <option>BELGIUM</option>
+                 <option>BELIZE</option>
+                 <option>BENIN</option>
+                 <option>BERMUDA</option>
+                 <option>BHUTAN</option>
+                 <option>BOLIVIA</option>
+                 <option>BONAIRE, SINT EUSTATIUS AND SABA</option>
+                 <option>BOSNIA AND HERZEGOVINA</option>
+                 <option>BOTSWANA</option>
+                 <option>BOUVET ISLAND</option>
+                 <option>BRAZIL</option>
+                 <option>BRITISH INDIAN OCEAN TERRITORY</option>
+                 <option>BRITISH VIRGIN ISLANDS</option>
+                 <option>BRUNEI</option>
+                 <option>BULGARIA</option>
+                 <option>BURKINA FASO</option>
+                 <option>BURMA</option>
+                 <option>BURUNDI</option>
+                 <option>CAMBODIA</option>
+                 <option>CAMEROON</option>
+                 <option>CANADA</option>
+                 <option>CAPE VERDE</option>
+                 <option>CAYMAN ISLANDS</option>
+                 <option>CENTRAL AFRICAN REPUBLIC</option>
+                 <option>CHAD</option>
+                 <option>CHILE</option>
+                 <option>CHINA</option>
+                 <option>CHRISTMAS ISLAND</option>
+                 <option>COCOS (KEELING) ISLANDS</option>
+                 <option>COLOMBIA</option>
+                 <option>COMOROS</option>
+                 <option>CONGO</option>
+                 <option>CONGO, THE DEMOCRATIC REPUBLIC OF THE</option>
+                 <option>COOK ISLANDS</option>
+                 <option>COSTA RICA</option>
+                 <option>COTE D'IVOIRE</option>
+                 <option>CROATIA</option>
+                 <option>CUBA</option>
+                 <option>CURACAO</option>
+                 <option>CYPRUS</option>
+                 <option>CZECH REPUBLIC</option>
+                 <option>DENMARK</option>
+                 <option>DJIBOUTI</option>
+                 <option>DOMINICA</option>
+                 <option>DOMINICAN REPUBLIC</option>
+                 <option>ECUADOR</option>
+                 <option>EGYPT</option>
+                 <option>EL SALVADOR</option>
+                 <option>EQUATORIAL GUINEA</option>
+                 <option>ERITREA</option>
+                 <option>ESTONIA</option>
+                 <option>ETHIOPIA</option>
+                 <option>FALKLAND ISLANDS (MALVINAS)</option>
+                 <option>FAROE ISLANDS</option>
+                 <option>FIJI</option>
+                 <option>FINLAND</option>
+                 <option>FRANCE</option>
+                 <option>FRENCH GUIANA</option>
+                 <option>FRENCH POLYNESIA</option>
+                 <option>FRENCH SOUTHERN TERRITORIES</option>
+                 <option>GABON</option>
+                 <option>GAMBIA</option>
+                 <option>GEORGIA</option>
+                 <option>GERMANY</option>
+                 <option>GHANA</option>
+                 <option>GIBRALTAR</option>
+                 <option>GREECE</option>
+                 <option>GREENLAND</option>
+                 <option>GRENADA</option>
+                 <option>GUADELOUPE</option>
+                 <option>GUAM</option>
+                 <option>GUATEMALA</option>
+                 <option>GUERNSEY</option>
+                 <option>GUINEA</option>
+                 <option>GUINEA BISSAU</option>
+                 <option>GUYANA</option>
+                 <option>INDIA</option>
+              </select>
+    </div>
+  </div>
+
+  </br>
+
+  <div class="row">
+      <div class="col-md-6">
+        <!--------------------------------------------------------------------
+          <input type="text" class="form-control" id="Country of Citizenship" placeholder="Country of Citizenship" name="Country of Citizenship" required/>
+-------------------------------------------------->
+<!------------------------------------------------------------>
+        <select class="form-control" id="Country" placeholder="Country of Citizenship" name="Country of Citizenship" required/>
+                <option value="">Country of Citizenship</option>
+                <option>UNITED STATES</option>
+                <option>AFGHANISTAN</option>
+                <option>ÅLAND ISLANDS</option>
+                 <option>ALBANIA</option>
+                 <option>ALGERIA</option>
+                 <option>AMERICAN SAMOA</option>
+                 <option>ANDORRA</option>
+                 <option>ANGOLA</option>
+                 <option>ANGUILLA</option>
+                 <option>ANTARCTICA</option>
+                 <option>ANTIGUA AND BARBUDA</option>
+                 <option>ARGENTINA</option>
+                 <option>ARMENIA</option>
+                 <option>ARUBA</option>
+                 <option>AUSTRALIA</option>
+                 <option>AUSTRIA</option>
+                 <option>AZERBAIJAN</option>
+                 <option>BAHAMAS</option>
+                 <option>BAHRAIN</option>
+                 <option>BANGLADESH</option>
+                 <option>BARBADOS</option>
+                 <option>BELARUS</option>
+                 <option>BELGIUM</option>
+                 <option>BELIZE</option>
+                 <option>BENIN</option>
+                 <option>BERMUDA</option>
+                 <option>BHUTAN</option>
+                 <option>BOLIVIA</option>
+                 <option>BONAIRE, SINT EUSTATIUS AND SABA</option>
+                 <option>BOSNIA AND HERZEGOVINA</option>
+                 <option>BOTSWANA</option>
+                 <option>BOUVET ISLAND</option>
+                 <option>BRAZIL</option>
+                 <option>BRITISH INDIAN OCEAN TERRITORY</option>
+                 <option>BRITISH VIRGIN ISLANDS</option>
+                 <option>BRUNEI</option>
+                 <option>BULGARIA</option>
+                 <option>BURKINA FASO</option>
+                 <option>BURMA</option>
+                 <option>BURUNDI</option>
+                 <option>CAMBODIA</option>
+                 <option>CAMEROON</option>
+                 <option>CANADA</option>
+                 <option>CAPE VERDE</option>
+                 <option>CAYMAN ISLANDS</option>
+                 <option>CENTRAL AFRICAN REPUBLIC</option>
+                 <option>CHAD</option>
+                 <option>CHILE</option>
+                 <option>CHINA</option>
+                 <option>CHRISTMAS ISLAND</option>
+                 <option>COCOS (KEELING) ISLANDS</option>
+                 <option>COLOMBIA</option>
+                 <option>COMOROS</option>
+                 <option>CONGO</option>
+                 <option>CONGO, THE DEMOCRATIC REPUBLIC OF THE</option>
+                 <option>COOK ISLANDS</option>
+                 <option>COSTA RICA</option>
+                 <option>COTE D'IVOIRE</option>
+                 <option>CROATIA</option>
+                 <option>CUBA</option>
+                 <option>CURACAO</option>
+                 <option>CYPRUS</option>
+                 <option>CZECH REPUBLIC</option>
+                 <option>DENMARK</option>
+                 <option>DJIBOUTI</option>
+                 <option>DOMINICA</option>
+                 <option>DOMINICAN REPUBLIC</option>
+                 <option>ECUADOR</option>
+                 <option>EGYPT</option>
+                 <option>EL SALVADOR</option>
+                 <option>EQUATORIAL GUINEA</option>
+                 <option>ERITREA</option>
+                 <option>ESTONIA</option>
+                 <option>ETHIOPIA</option>
+                 <option>FALKLAND ISLANDS (MALVINAS)</option>
+                 <option>FAROE ISLANDS</option>
+                 <option>FIJI</option>
+                 <option>FINLAND</option>
+                 <option>FRANCE</option>
+                 <option>FRENCH GUIANA</option>
+                 <option>FRENCH POLYNESIA</option>
+                 <option>FRENCH SOUTHERN TERRITORIES</option>
+                 <option>GABON</option>
+                 <option>GAMBIA</option>
+                 <option>GEORGIA</option>
+                 <option>GERMANY</option>
+                 <option>GHANA</option>
+                 <option>GIBRALTAR</option>
+                 <option>GREECE</option>
+                 <option>GREENLAND</option>
+                 <option>GRENADA</option>
+                 <option>GUADELOUPE</option>
+                 <option>GUAM</option>
+                 <option>GUATEMALA</option>
+                 <option>GUERNSEY</option>
+                 <option>GUINEA</option>
+                 <option>GUINEA BISSAU</option>
+                 <option>GUYANA</option>
+                 <option>HAITI</option>
+                 <option>HEARD ISLAND AND MCDONALD ISLANDS</option>
+                 <option>HOLY SEE</option>
+                 <option>HONDURAS</option>
+                 <option>HONG KONG</option>
+                 <option>HUNGARY</option>
+                 <option>ICELAND</option>
+                 <option>INDIA</option>
+                 <option>INDONESIA</option>
+                 <option>IRAN</option>
+                 <option>IRAQ</option>
+                 <option>IRELAND</option>
+                 <option>ISLE OF MAN</option>
+                 <option>ISRAEL</option>
+                 <option>ITALY</option>
+                 <option>JAMAICA</option>
+                 <option>JAPAN</option>
+                 <option>JERSEY</option>
+                 <option>JORDAN</option>
+                 <option>KAZAKHSTAN</option>
+                 <option>KENYA</option>
+                 <option>KIRIBATI</option>
+                 <option>KOSOVO</option>
+                 <option>KUWAIT</option>
+                 <option>KYRGYZSTAN</option>
+                 <option>LAOS</option>
+                 <option>LATVIA</option>
+                 <option>LEBANON</option>
+                 <option>LESOTHO</option>
+                 <option>LIBERIA</option>
+                 <option>LIBYA</option>
+                 <option>LIECHTENSTEIN</option>
+                 <option>LITHUANIA</option>
+                 <option>LUXEMBOURG</option>
+                 <option>MACAU</option>
+                 <option>MACEDONIA</option>
+                 <option>MADAGASCAR</option>
+                 <option>MALAWI</option>
+                 <option>MALAYSIA</option>
+                 <option>MALDIVES</option>
+                 <option>MALI</option>
+                 <option>MALTA</option>
+                 <option>MARSHALL ISLANDS</option>
+                 <option>MARTINIQUE</option>
+                 <option>MAURITANIA</option>
+                 <option>MAURITIUS</option>
+                 <option>MAYOTTE</option>
+                 <option>MEXICO</option>
+                 <option>MICRONESIA</option>
+                 <option>MOLDOVA</option>
+                 <option>MONACO</option>
+                 <option>MONGOLIA</option>
+                 <option>MONTENEGRO</option>
+                 <option>MONTSERRAT</option>
+                 <option>MOROCCO</option>
+                 <option>MOZAMBIQUE</option>
+                 <option>NAMIBIA</option>
+                 <option>NAURU</option>
+                 <option>NEPAL</option>
+                 <option>NETHERLANDS</option>
+                 <option>NEW CALEDONIA</option>
+                 <option>NEW ZEALAND</option>
+            </select>
+<!------------------------------------------------------------>
+      </div>
+      <div class="col-md-6">
+        <label for="vehicle1"> My mailing address is different from my residential address</label>
+        <input type="checkbox" onclick="myFunction()" id="different from my residential address"  name="residential address" value="" >
+      </div>
+    </div>
+
+
+<!----------------Start My mailing address is different from my residential address optional  ------------------------------->
+<div style="display:none; margin-top: 2%;" id="myDIV">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+               <textarea class="form-control" style="height:70px;" rows="5" id="comment" pattern="\d+(\.\d{2})?" name="text" placeholder="Residential Address Line 1" required/></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <textarea class="form-control" style="height:70px;" rows="5" id="comment" name="text" placeholder="Residential Address Line 2"></textarea>
+        </div>
+      </div>
+
+      </br>
+
+    <div class="row">
+       <div class="col-md-3">
+           <input type="text" class="form-control" id="City" placeholder="City" name="City" required/>
+       </div>
+       <div class="col-md-3">
+            <input type="text" class="form-control" id="State" placeholder="State" name="State" required/>
+       </div>
+       <div class="col-md-3">
+         <input type="text" class="form-control" id="Zip Code" type="text" placeholder="Zip Code" name="Zip Code" match="(/[0-9]/))" required/>
+      </div>
+      <div class="col-md-3">
+       <select class="form-control" id="Country" placeholder="Primary Purpose for Opening Account" name="Primary Purpose for Opening Account" required/>
+                <option value="">Select Country</option>
+                <option>UNITED STATES</option>
+                <option>AFGHANISTAN</option>
+                <option>ÅLAND ISLANDS</option>
+                 <option>ALBANIA</option>
+                 <option>ALGERIA</option>
+                 <option>AMERICAN SAMOA</option>
+                 <option>ANDORRA</option>
+                 <option>ANGOLA</option>
+                 <option>ANGUILLA</option>
+                 <option>ANTARCTICA</option>
+                 <option>ANTIGUA AND BARBUDA</option>
+                 <option>ARGENTINA</option>
+                 <option>ARMENIA</option>
+                 <option>ARUBA</option>
+                 <option>AUSTRALIA</option>
+                 <option>AUSTRIA</option>
+                 <option>AZERBAIJAN</option>
+                 <option>BAHAMAS</option>
+                 <option>BAHRAIN</option>
+                 <option>BANGLADESH</option>
+                 <option>BARBADOS</option>
+                 <option>BELARUS</option>
+                 <option>BELGIUM</option>
+                 <option>BELIZE</option>
+                 <option>BENIN</option>
+                 <option>BERMUDA</option>
+                 <option>BHUTAN</option>
+                 <option>BOLIVIA</option>
+                 <option>BONAIRE, SINT EUSTATIUS AND SABA</option>
+                 <option>BOSNIA AND HERZEGOVINA</option>
+                 <option>BOTSWANA</option>
+                 <option>BOUVET ISLAND</option>
+                 <option>BRAZIL</option>
+                 <option>BRITISH INDIAN OCEAN TERRITORY</option>
+                 <option>BRITISH VIRGIN ISLANDS</option>
+                 <option>BRUNEI</option>
+                 <option>BULGARIA</option>
+                 <option>BURKINA FASO</option>
+                 <option>BURMA</option>
+                 <option>BURUNDI</option>
+                 <option>CAMBODIA</option>
+                 <option>CAMEROON</option>
+                 <option>CANADA</option>
+                 <option>CAPE VERDE</option>
+                 <option>CAYMAN ISLANDS</option>
+                 <option>CENTRAL AFRICAN REPUBLIC</option>
+                 <option>CHAD</option>
+                 <option>CHILE</option>
+                 <option>CHINA</option>
+                 <option>CHRISTMAS ISLAND</option>
+                 <option>COCOS (KEELING) ISLANDS</option>
+                 <option>COLOMBIA</option>
+                 <option>COMOROS</option>
+                 <option>CONGO</option>
+                 <option>CONGO, THE DEMOCRATIC REPUBLIC OF THE</option>
+                 <option>COOK ISLANDS</option>
+                 <option>COSTA RICA</option>
+                 <option>COTE D'IVOIRE</option>
+                 <option>CROATIA</option>
+                 <option>CUBA</option>
+                 <option>CURACAO</option>
+                 <option>CYPRUS</option>
+                 <option>CZECH REPUBLIC</option>
+                 <option>DENMARK</option>
+                 <option>DJIBOUTI</option>
+                 <option>DOMINICA</option>
+                 <option>DOMINICAN REPUBLIC</option>
+                 <option>ECUADOR</option>
+                 <option>EGYPT</option>
+                 <option>EL SALVADOR</option>
+                 <option>EQUATORIAL GUINEA</option>
+                 <option>ERITREA</option>
+                 <option>ESTONIA</option>
+                 <option>ETHIOPIA</option>
+                 <option>FALKLAND ISLANDS (MALVINAS)</option>
+                 <option>FAROE ISLANDS</option>
+                 <option>FIJI</option>
+                 <option>FINLAND</option>
+                 <option>FRANCE</option>
+                 <option>FRENCH GUIANA</option>
+                 <option>FRENCH POLYNESIA</option>
+                 <option>FRENCH SOUTHERN TERRITORIES</option>
+                 <option>GABON</option>
+                 <option>GAMBIA</option>
+                 <option>GEORGIA</option>
+                 <option>GERMANY</option>
+                 <option>GHANA</option>
+                 <option>GIBRALTAR</option>
+                 <option>GREECE</option>
+                 <option>GREENLAND</option>
+                 <option>GRENADA</option>
+                 <option>GUADELOUPE</option>
+                 <option>GUAM</option>
+                 <option>GUATEMALA</option>
+                 <option>GUERNSEY</option>
+                 <option>GUINEA</option>
+                 <option>GUINEA BISSAU</option>
+                 <option>GUYANA</option>
+                 <option>HAITI</option>
+                 <option>HEARD ISLAND AND MCDONALD ISLANDS</option>
+                 <option>HOLY SEE</option>
+                 <option>HONDURAS</option>
+                 <option>HONG KONG</option>
+                 <option>HUNGARY</option>
+                 <option>ICELAND</option>
+                 <option>INDIA</option>
+                 <option>INDONESIA</option>
+                 <option>IRAN</option>
+                 <option>IRAQ</option>
+                 <option>IRELAND</option>
+                 <option>ISLE OF MAN</option>
+                 <option>ISRAEL</option>
+                 <option>ITALY</option>
+                 <option>JAMAICA</option>
+                 <option>JAPAN</option>
+                 <option>JERSEY</option>
+                 <option>JORDAN</option>
+                 <option>KAZAKHSTAN</option>
+                 <option>KENYA</option>
+                 <option>KIRIBATI</option>
+                 <option>KOSOVO</option>
+                 <option>KUWAIT</option>
+                 <option>KYRGYZSTAN</option>
+                 <option>LAOS</option>
+                 <option>LATVIA</option>
+                 <option>LEBANON</option>
+                 <option>LESOTHO</option>
+                 <option>LIBERIA</option>
+                 <option>LIBYA</option>
+                 <option>LIECHTENSTEIN</option>
+                 <option>LITHUANIA</option>
+                 <option>LUXEMBOURG</option>
+                 <option>MACAU</option>
+                 <option>MACEDONIA</option>
+                 <option>MADAGASCAR</option>
+                 <option>MALAWI</option>
+                 <option>MALAYSIA</option>
+                 <option>MALDIVES</option>
+                 <option>MALI</option>
+                 <option>MALTA</option>
+                 <option>MARSHALL ISLANDS</option>
+                 <option>MARTINIQUE</option>
+                 <option>MAURITANIA</option>
+                 <option>MAURITIUS</option>
+                 <option>MAYOTTE</option>
+                 <option>MEXICO</option>
+                 <option>MICRONESIA</option>
+                 <option>MOLDOVA</option>
+                 <option>MONACO</option>
+                 <option>MONGOLIA</option>
+                 <option>MONTENEGRO</option>
+                 <option>MONTSERRAT</option>
+                 <option>MOROCCO</option>
+                 <option>MOZAMBIQUE</option>
+                 <option>NAMIBIA</option>
+                 <option>NAURU</option>
+                 <option>NEPAL</option>
+                 <option>NETHERLANDS</option>
+                 <option>NEW CALEDONIA</option>
+                 <option>NEW ZEALAND</option>
+            </select>
+      </div>
+  </div>
+  </div>
+</br>
+
+<!--------------------My mailing address is different from my residential address End---------------------------------->
+
+  <div class="row">
+   
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="Tax Identification / Social Security Number" placeholder="Tax Identification / Social Security Number" name="Tax Identification / Social Security Number" required/>
+    </div>
+    <div class="col-md-6">
+          <select class="form-control" id="Primary Purpose for Opening Account" placeholder="Primary Purpose for Opening Account" name="Primary Purpose for Opening Account" required/>
+                <option value="">Primary Purpose for Opening Account</option>
+                <option>Investment</option>
+                <option>Savings</option>
+                <option>Funding Purchases</option>
+                 <option>Transferring Funds</option>
+              </select>
+    </div>
+  </div>
+</br>
+  <div class="row">   
+    <div class="col-md-6">
+        <!------------------<input type="text" class="form-control" placeholder="Primary Product or Service Requested" name="Primary Product or Service Requested" required/>------------->
+      <!------------------------------------------>
+          <select class="form-control" id="Primary Purpose for Opening Account" placeholder="Primary Purpose for Opening Account" name="Primary Purpose for Opening Account" required/>
+                <option value="">Products & Services Requested</option>
+                <option>Equity & Fixed Income Securities</option>
+                <option>Mutual Funds</option>
+                <option>Hedge Funds & Private Equity Funds</option>
+                <option>Options & Derivatives</option>
+                <option>Annuities</option>
+                <option>Alternative and Complex Products</option>
+                <option>Cryptocurrencies</option>
+                <option>Commodities & Futures</option>
+                <option>Foreign Exchange</option>
+                <option>Real Estate Investment Trusts</option>
+                <option>Trade/Export Finance</option>
+                <option>International Private Banking</option>
+                <option>International Correspondent Banking</option>
+                <option>International Brokered Deposits</option>
+                <option>Safe Deposit Services</option>
+                <option>Precious Metals (Delivery) Services</option>
+                <option>Payment Processing & Prepaid Products</option>
+                <option>Savings accounts</option>
+                <option>Debit cards</option>
+                <option>Credit cards</option>
+                <option>Checking Accounts</option>
+                <option>Money Market Accounts</option>
+                <option>Mortgage Loans</option>
+                <option>Home Equity Line of Credit</option>
+                <option>Personal loans</option>
+                <option>Business loans</option>
+                <option>Investment loans</option>
+                <option>Certificates of Deposit</option>
+                <option>ATM Services</option>
+                <option>Project Finance</option>
+                <option>Syndicated Loans</option>
+                <option>Equipment Leasing & Financing</option>
+              </select>
+      
+    </div>
+    <div class="col-md-6">
+          <select class="form-control" id="Expected Average Account Value" placeholder="Expected Average Account Value" name="Expected Average Account Value" required/>
+                <option value="">Expected Average Account Value</option>
+                <option>Less than $50,000</option>
+                <option>$50,000 to $500,000</option>
+                <option>$500,000 to $1,000,000</option>
+                 <option>$1,000,000 +</option>
+              </select>
+         
+    </div>
+  </div>
+</br>
+
+  <div class="row">   
+    <div class="col-md-6">
+      <!------------------------------
+        <input type="text" class="form-control" placeholder="Primary Source of Funds Being Deposited" name="Primary Source of Funds Being Deposited" required/>-------------------------->
+          <select class="form-control" id="Primary Source of Funds Being Deposited" placeholder="Primary Source of Funds Being Deposited" name="Primary Source of Funds Being Deposited" required/>
+                <option value="">Source of Funds Being Deposited</option>
+                <option>Investment Income</option>
+                <option>Government Payments</option>
+                <option>Grants</option>
+                <option>Employment Income</option>
+                <option>Royalty Fees</option>
+                <option>Trust Income</option>
+                <option>Rental Income</option>
+                <option>Family Support Income</option>
+                <option>Loans</option>
+                <option>Other Funding </option>
+                <option>Sale of Property</option>
+                <option>Sale of Investments</option>
+              </select>
+
+    </div>
+    <div class="col-md-6">
+      <select class="form-control" id="Employment Status" placeholder="Employment Status" name="Employment Status" required/>
+                <option value="">Employment Status</option>
+                <option>Employed</option>
+                <option>Unemployed</option>
+                <option>Self-Employed</option>
+                <option>Retired</option>
+                <option>Student</option>
+              </select>
+    </div>
+  </div>
+</br>
+
+<div class="row" style="text-align: center;">   
+    <div class="col-md-12">
+        <label for="vehicle1"> By continuing I certify that I am 18 years of age, and I agree to the User Agreement and Privacy Policy</label>
+        <input type="checkbox" id="different from my residential address"  name="residential address" value="" required/>
+    </div>
+
+
+    
+  </div>
+
+  
+      <script src="http://jonthornton.github.io/Datepair.js/dist/datepair.js"></script>
+      <script src="http://jonthornton.github.io/Datepair.js/dist/jquery.datepair.js"></script>
+      <script>
+      $('#datepairExample .time').timepicker({
+        'showDuration': true,
+        'timeFormat': 'g:ia'
+      });
+
+      $('#datepairExample .date').datepicker({
+        'format': 'm/d/yyyy',
+        'autoclose': true
+      });
+
+      $('#datepairExample').datepair();
+      </script>
+</br>
+  <!--------------------------Submit Button Start----------------------------->
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <input style="background-color:#1800b9;" type="submit" class="btn btn-success btn-lg btn-block" name="btn" placeholder="DATE" value="SUBMIT" required/>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <!--------------------------Submit Button Close----------------------------->
+</br>
+</div>
+
+</form>
+
+ 
+</div>
+
+</body>
+</html>
