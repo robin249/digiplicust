@@ -1,3 +1,24 @@
+<?php 
+  session_start();
+
+  $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
+  $hostName = $_SERVER['HTTP_HOST'];
+  $domain = $protocol.'://'.$hostName."/";
+
+	if (isset($_SESSION['is_user'])) {
+	  header('Location: ' . $domain . 'index.php');
+	}
+  if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if($_POST['uname']=='Digidemo' && $_POST['psw']=='Pa55word!') {
+    	$_SESSION['is_user'] = 'true';
+    	header('Location: ' . $domain . 'index.php');
+    	// exit();
+    } else {
+    	$error = "Invalid username and password.";
+    }
+  }
+
+?>
 <!DOCTYPE html> 
 <html> 
 <head>
@@ -88,26 +109,6 @@
 </head>
 
 <body>
-<?php 
-  session_start();
-
-  $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
-  $hostName = $_SERVER['HTTP_HOST'];
-  $domain = $protocol.'://'.$hostName."/";
-
-	if (isset($_SESSION['is_user'])) {
-	  header('Location: ' . $domain);
-	}
-  if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if($_POST['uname']=='Digidemo' && $_POST['psw']=='Pa55word!') {
-    	$_SESSION['is_user'] = 'true';
-    	header('Location: ' . $domain);
-    } else {
-    	$error = "Invalid username and password.";
-    }
-  }
-
-?>
 	<!--Step 1 : Adding HTML-->
 	<form method="post" autocomplete="off" name="logindata" action="">
 		<div class="imgcontainer"> 

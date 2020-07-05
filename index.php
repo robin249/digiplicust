@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  $_SESSION['test_user'] = 'testing';
 
   $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
   $hostName = $_SERVER['HTTP_HOST'];
@@ -8,6 +9,7 @@
   // unset($_SESSION["is_user"]);
   if (!isset($_SESSION['is_user'])) {
     header('Location: ' . $domain . 'login.php');
+    // exit();
   }
   require_once('database.php');
   require_once('Masking/country.php');
