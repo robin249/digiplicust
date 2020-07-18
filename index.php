@@ -72,40 +72,60 @@ option {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script>
+  function insert_mask(str, index, value) {
+      return str.substr(0, index) + value + str.substr(index);
+  }
+  function phoneMasking(text) {
+    str = text.val();
+    if (text.val().length >= 3) {
+      str = insert_mask(str, 3, '-')
+      text.val(str);
+    }
+    if (text.val().length >= 7) {
+      str = insert_mask(str, 7, '-')
+      text.val(str);
+    }
+  }
+  function phoneMask(key, text) {
+    if (key !== 8 && key !== 9) {
+      if (text.val().length === 3) {
+        text.val(text.val() + '-');
+      }
+      if (text.val().length === 7) {
+        text.val(text.val() + '-');
+      }
+    }
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+  }
   $(function () {
 
     $('#txtphone').keydown(function (e) {
-      var key = e.charCode || e.keyCode || 0;
-      $text = $(this);
-      if (key !== 8 && key !== 9) {
-        if ($text.val().length === 3) {
-          $text.val($text.val() + '-');
-        }
-        if ($text.val().length === 7) {
-          $text.val($text.val() + '-');
-        }
+      if($("#phone").val() == '+1') {
+        var key = e.charCode || e.keyCode || 0;
+        $text = $(this);
+        phoneMask(key, $text);
       }
-      return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
     })
 
   });
-</script>
-<script>
   $(function () {
 
     $('#txtphone1').keydown(function (e) {
-      var key = e.charCode || e.keyCode || 0;
-      $text = $(this);
-      if (key !== 8 && key !== 9) {
-        if ($text.val().length === 3) {
-          $text.val($text.val() + '-');
-        }
-        if ($text.val().length === 7) {
-          $text.val($text.val() + '-');
-        }
+      if($("#phone1").val() == '+1') {
+        var key = e.charCode || e.keyCode || 0;
+        $text = $(this);
+        phoneMask(key, $text);
       }
-      return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
     })
+
+  });
+  $(document).on('change', '#phone', function() {
+    var txtphone = $("#txtphone");
+    if($("#phone").val() == '+1') {
+      phoneMask('97', txtphone);
+    } else {
+      txtphone.val(txtphone.val().replace("-",""));
+    }
 
   });
 </script>
@@ -240,6 +260,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
              
                 utilsScript: "Phonenewjs/build/js/utils.js",
               });
+              $("#phone").on('countrychange', function(e, countryData){
+                var txtphone = $("#txtphone");
+                if($("#phone").val() == '+1') {
+                  if (txtphone.val().indexOf('-') == -1)
+                    phoneMasking(txtphone);
+                } else {
+                  txtphone.val(txtphone.val().replace(/-/g,""));
+                }
+              });
             </script>
   
             </div>
@@ -256,6 +285,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
               window.intlTelInput(input, {
              
                 utilsScript: "Phonenewjs/build/js/utils.js",
+              });
+              $("#phone1").on('countrychange', function(e, countryData){
+                var txtphone = $("#txtphone1");
+                if($("#phone1").val() == '+1') {
+                  if (txtphone.val().indexOf('-') == -1)
+                    phoneMasking(txtphone);
+                } else {
+                  txtphone.val(txtphone.val().replace(/-/g,""));
+                }
               });
             </script>
          </div>
@@ -356,7 +394,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
          </br>
          <!--My mailing address is different from my residential address End-->
          <div class="row">
-            <div class="col-md-6">               
+            <div class="col-md-3">
+              <select class="form-control" name="IndividualCountryTIN" id="country_tin" required>
+                <option value="" disabled selected>Country Issuing TIN / SSN</option>
+                  <?php foreach ($country_list as $key => $value) {             ?>
+                    <option value="<?php echo $key;?>"><?php echo $value ?></option>
+                  <?php } ?>
+              </select>
+            </div>
+            <div class="col-md-3 pl-0">
               <!--<input class="form-control" type="password" id=""  maxlength="9" placeholder="Tax Identification / Social Security Number" name="TIN"  />-->
               <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax Identification / Social Security Number" autocomplete="off" required>
             </div>
@@ -504,6 +550,14 @@ $("#DDLActivites").selectpicker({
       $("#state2_drp").hide();
       $("#state2_inp").attr("required", true);
       $("#state2_drp").attr("required", false);
+    }
+  });
+  $("#country_tin").change(function(){
+    var country_tin = $('#country_tin').val();
+    if (country_tin == 'sdi_f481ee9efb0249daa1c8bea1e064f326') {
+      $(".ssnInputMask").inputmask("999-99-9999");
+    } else {
+      $(".ssnInputMask").inputmask("999999999");
     }
   });
 </script>

@@ -18,7 +18,7 @@
 
 	// API2: Put Item
   $uniqItemId = uniq_alphanum();
-  // echo $uniqItemId . "<br>";
+  echo $uniqItemId . "<br>";
   $itemName = $_POST['CDDCustomerFirstName'] . " " . $_POST['CDDClientMiddleName'] . " " . $_POST['CDDCustomersLastName'];
 	$params2 = array(
 		"Key" => $uniqItemId,
@@ -56,15 +56,15 @@
   		"DOBYear" => array("Text" => $DOBYear), 
   		"Email" => array("Text" => $_POST['Email']), 
   		"PhoneCountryCodePrimary" => array("Text" => $_POST['PhoneCountryCodePrimary']), 
-  		"CustomerPrimaryPhonenumber" => array("Text" => $_POST['CustomerPrimaryPhonenumber']), 
+  		"CustomerPrimaryPhonenumber" => array("Text" => str_replace("-", "", $_POST['CustomerPrimaryPhonenumber'])), 
   		"PhoneCountryCodeAlternate" => array("Text" => !empty($_POST['AlternatePhone']) ? $_POST['PhoneCountryCodeAlternate'] : ''), 
-  		"AlternatePhone" => array("Text" => $_POST['AlternatePhone']), 
+  		"AlternatePhone" => array("Text" => isset($_POST['AlternatePhone']) ? str_replace("-", "", $_POST['AlternatePhone']) : ''), 
   		"PhysicalAddress" => array("Text" => $address), 
   		// "PhysicalAddressLine2" => array("Text" => $_POST['PhysicalAddressLine2']), 
   		"CountryOfResidence" => array("SelectedItems" => [$_POST['CountryOfResidence']]), 
   		"LNStateString" => array("Text" => $_POST['LNStateString']), 
   		"City" => array("Text" => $_POST['City']), 
-  		"ZipCode" => array("Text" => $_POST['ZipCode']), 
+      "ZipCode" => array("Text" => $_POST['ZipCode']), 
   		"CountryofCitizenship" => array("SelectedItems" => [$_POST['CountryofCitizenship']]), 
   		"CopyToMailing" => array("BitValue" => isset($_POST['CopyToMailing']) ? false : true), 
   		"MailingAddress" => array("Text" => isset($_POST['MailingAddress']) ? $mailing_address : ''), 
@@ -72,7 +72,8 @@
   		"MailingCountry" => array("SelectedItems" => isset($_POST['MailingCountry']) ? [$_POST['MailingCountry']] : ''), 
   		"ProvinceMailing" => array("Text" => isset($_POST['ProvinceMailing']) ? $_POST['ProvinceMailing'] : ''), 
   		"MailingCity" => array("Text" => isset($_POST['MailingCity']) ? $_POST['MailingCity'] : ''), 
-  		"MailingZipCode" => array("Text" => isset($_POST['MailingZipCode']) ? $_POST['MailingZipCode'] : ''), 
+      "MailingZipCode" => array("Text" => isset($_POST['MailingZipCode']) ? $_POST['MailingZipCode'] : ''), 
+  		"IndividualCountryTIN" => array("SelectedItems" => [$_POST['IndividualCountryTIN']]), 
   		"TIN" => array("Text" => str_replace("-", "", $_POST['TIN'])), 
   		"AccountPurpose" => array("SelectedItems" => $_POST['AccountPurpose']), 
   		"ProductsAndServices" => array("SelectedItems" => $_POST['ProductsAndServices']), 
@@ -88,7 +89,7 @@
 		"Content-Type: application/json"
   );
 	$putResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
-	// print_r($putResponse);
+	print_r($params3);
   if ($putResponse == 200) 
     $success = "Record has been created successfully!";
   else
