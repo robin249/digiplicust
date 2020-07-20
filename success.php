@@ -87,6 +87,17 @@
 		padding-top: 16px; 
 	} 
 	/*set styles for span and cancel button on small screens*/ 
+
+	.container-table {
+	  display: table;
+	}
+	.vertical-center-row {
+	  display: table-cell;
+	  vertical-align: middle;
+	}
+	.pt-70 {
+	  padding-top: 70px;
+	}
 	
 	@media screen and (max-width: 300px) { 
 		span.psw { 
@@ -105,14 +116,14 @@
 
 <body>
 	<!--Step 1 : Adding HTML-->
-	<form method="post" autocomplete="off" name="logindata" action="">
-		<div class="imgcontainer"> 
-			<img src="DigiPli1.png" alt="Logo" width="150px" height="118px" />
-		</div> 
+	<div class="pt-70">
+	  <div class="imgcontainer">
+	    <img src="DigiPli1.png" alt="Logo" width="150px" height="118px" />
+	  </div>
 
-		<div class="container-row">
-	    <div class="row">
-	      <div class="col-md-12">
+	  <div class="container container-table">
+	    <div class="row vertical-center-row">
+	      <div class="col-md-6 col-md-offset-3">
 
 	        <?php if(isset($success)) { ?>
 	          <div class="alert alert-success fade in">
@@ -121,12 +132,11 @@
 	          </div>
 	        <?php } ?>
 	      </div>
+	      <div class="col-md-6 col-md-offset-3">
+	        <label>Please click <a href="<?php echo $loginURL; ?>">here</a> to go to the home page</label>
+	      </div>
 	    </div>
-			<label>Please click <a href="<?php echo $loginURL; ?>">here</a> to go to the home page</label>
-			</div> 
-
-	</form> 
-
+	  </div>
+	</div>
 </body> 
-
 </html> 

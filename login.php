@@ -34,8 +34,6 @@
 	/*set border to the form*/ 
 	
 	form { 
-		padding-left: 200px;
-		padding-right: 200px;
 		padding-top: 70px;
 	} 
 	/*assign full width inputs*/ 
@@ -93,6 +91,17 @@
 	} 
 	/*set styles for span and cancel button on small screens*/ 
 	
+	.container-table {
+	  display: table;
+	}
+	.vertical-center-row {
+	  display: table-cell;
+	  vertical-align: middle;
+	}
+	.pt-70 {
+	  padding-top: 70px;
+	}
+
 	@media screen and (max-width: 300px) { 
 		span.psw { 
 			display: block; 
@@ -115,26 +124,30 @@
 			<img src="DigiPli1.png" alt="Logo" width="150px" height="118px" />
 		</div> 
 
-		<div class="container-row"> 
-	    <div class="row">
-	      <div class="col-md-12">
+		<div class="container container-table">
+			<div class="row vertical-center-row">
+			  <div class="col-md-6 col-md-offset-3">
 
-	        <?php if(isset($error)) { ?>
-	          <div class="alert alert-danger fade in">
-	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	            <strong>Error!</strong> <?php if(isset($error)){ echo $error; } ?>
-	          </div>
-	        <?php } ?>
-	      </div>
-	    </div>
-			<label><b>Username</b></label> 
-			<input type="text" placeholder="Enter Username" name="uname" required> 
-
-			<label><b>Password</b></label> 
-			<input type="password" placeholder="Enter Password" name="psw" required> 
-
-			<button type="submit">Login</button> 
+			    <?php if(isset($error)) { ?>
+			      <div class="alert alert-danger fade in">
+			        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			        <strong>Error!</strong> <?php if(isset($error)){ echo $error; } ?>
+			      </div>
+			    <?php } ?>
+			  </div>
+			  <div class="col-md-6 col-md-offset-3">
+			    <label><b>Username</b></label> 
+			    <input type="text" placeholder="Enter Username" name="uname" required> 
+			  </div>
+			  <div class="col-md-6 col-md-offset-3">
+			    <label><b>Password</b></label> 
+			    <input type="password" placeholder="Enter Password" name="psw" required> 
+			  </div>
+		    <div class="col-md-6 col-md-offset-3">
+			    <button type="submit">Login</button> 
+			  </div>
 			</div> 
+		</div> 
 
 	</form> 
 
