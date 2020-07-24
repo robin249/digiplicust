@@ -18,7 +18,7 @@
 
 	// API2: Put Item
   $uniqItemId = uniq_alphanum();
-  echo $uniqItemId . "<br>";
+  // echo $uniqItemId . "<br>";
   $itemName = $_POST['CDDCustomerFirstName'] . " " . $_POST['CDDClientMiddleName'] . " " . $_POST['CDDCustomersLastName'];
 	$params2 = array(
 		"Key" => $uniqItemId,
@@ -89,7 +89,7 @@
 		"Content-Type: application/json"
   );
 	$putResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
-	print_r($params3);
+	// print_r($params3);
   if ($putResponse == 200) 
     $success = "Record has been created successfully!";
   else

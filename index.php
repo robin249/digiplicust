@@ -100,8 +100,13 @@ option {
   $(function () {
 
     $('#txtphone').keydown(function (e) {
+      var key = e.charCode || e.keyCode || 0;
+      if(key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)){
+
+      } else {
+        return false;
+      }
       if($("#phone").val() == '+1') {
-        var key = e.charCode || e.keyCode || 0;
         $text = $(this);
         phoneMask(key, $text);
       }
@@ -111,8 +116,13 @@ option {
   $(function () {
 
     $('#txtphone1').keydown(function (e) {
+      var key = e.charCode || e.keyCode || 0;
+      if(key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)){
+
+      } else {
+        return false;
+      }
       if($("#phone1").val() == '+1') {
-        var key = e.charCode || e.keyCode || 0;
         $text = $(this);
         phoneMask(key, $text);
       }
@@ -404,7 +414,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="col-md-3 pl-0">
               <!--<input class="form-control" type="password" id=""  maxlength="9" placeholder="Tax Identification / Social Security Number" name="TIN"  />-->
-              <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax Identification / Social Security Number" autocomplete="off" required>
+              <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax Id / Social Security Number" autocomplete="off" required>
             </div>
             <div class="col-md-6">
                <!--
@@ -557,7 +567,7 @@ $("#DDLActivites").selectpicker({
     if (country_tin == 'sdi_f481ee9efb0249daa1c8bea1e064f326') {
       $(".ssnInputMask").inputmask("999-99-9999");
     } else {
-      $(".ssnInputMask").inputmask("999999999");
+      $(".ssnInputMask").inputmask('remove');
     }
   });
 </script>
