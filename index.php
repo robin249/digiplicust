@@ -414,7 +414,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="col-md-3 pl-0">
               <!--<input class="form-control" type="password" id=""  maxlength="9" placeholder="Tax Identification / Social Security Number" name="TIN"  />-->
-              <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax Id / Social Security Number" autocomplete="off" required>
+              <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax ID / Social Security Number" autocomplete="off" required>
             </div>
             <div class="col-md-6">
                <!--

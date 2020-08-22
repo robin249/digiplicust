@@ -7,7 +7,7 @@
 		"client_secret" => "FA1770D12CF542EDB65884AA1E731B0B",
 		"scope" => "api openid",
 		"username" => "DigiPliAPI",
-		"password" => "AP!account1",
+		"password" => "AP!account2",
 	);
 	$headers1 = array(
 		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
