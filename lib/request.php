@@ -14,6 +14,15 @@ function uniq_alphanum()
   $random = $number.''.$t;
   return md5(uniqid($random, true));
 }
+
+function base64_to_jpeg($base64_string, $imageName, $domain) {
+  $imageData = base64_decode($base64_string);
+  $source = imagecreatefromstring($imageData);
+  $imageSave = imagejpeg($source,$imageName,100);
+  imagedestroy($source);
+  return $domain . $imageName;
+}
+
 function httpGet($url, $headers=false)
 {
   $ch = curl_init();  

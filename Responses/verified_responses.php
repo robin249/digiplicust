@@ -14,7 +14,7 @@
 		"Content-Type: application/x-www-form-urlencoded"
   );
 	$accessToken = httpPost("https://aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
-
+	// echo $accessToken . "<br>";
 	// API 2 Get user detail
 	$clientId = "P4I1wQpTgmaergZ6DzcM";
 	$clientSecret = "he64wgL7SI7sku3BIs1UVhm79LbBmCiAgXyTzMPq";
@@ -29,17 +29,24 @@
 
 	// API 3: Put Verified Response Data
 	$res = json_decode($putItem);
-	// print_r($putItem);
 	if (isset($res->documentData)) {
 		$documentNumber = $res->documentData->documentNumber;
 		$issuingCountry = $res->documentData->issuingCountry;
 		$documentType = $res->documentData->documentType;
 		$firstName = $res->documentData->givenNames;
 		$lastName = $res->documentData->surname;
+		$fullName = $res->documentData->surnameAndGivenNames;
 		$dateOfBirth = $res->documentData->dateOfBirth;
 		$dateOfIssue = $res->documentData->dateOfIssue;
 		$dateOfExpiry = $res->documentData->dateOfExpiry;
 		$jurisdiction = $res->documentData->jurisdiction;
+		$faceImage = $res->documentData->faceImage->content;
+		$frontImage = $res->documentData->croppedFrontImage->content;
+		$backImage = $res->documentData->croppedBackImage->content;
+
+		$faceUrl = "images/face_$u_id.png";
+		$frontUrl = "images/front_$u_id.png";
+		$backUrl = "images/back_$u_id.png";
 
 		$params3 = array(
 	  	"ItemId" => $u_id, 
@@ -51,6 +58,10 @@
 	  		"GIDVDocType" => array("Text" => isset($documentType) ? $documentType : ''),
 	  		"GIDVFirstName" => array("Text" => isset($firstName) ? $firstName : ''),
 	  		"GIDVLastName" => array("Text" => isset($lastName) ? $lastName : ''),
+	  		"GIDVFullName" => array("Text" => isset($fullName) ? $fullName : ''),
+	  		"GIDVFaceImage" => array("Text" => isset($faceImage) ? base64_to_jpeg($faceImage, $faceUrl, $domain) : ''),
+	  		"GIDVFrontImage" => array("Text" => isset($frontImage) ? base64_to_jpeg($frontImage, $frontUrl, $domain) : ''),
+	  		"GIDVBackImage" => array("Text" => isset($backImage) ? base64_to_jpeg($backImage, $backUrl, $domain) : ''),
 	  		"GIDVDOB" => array("DateTimeValue" => isset($dateOfBirth) ? $dateOfBirth . 'T00:00:00.000Z' : ''),
 	  		"GIDVDateOfIssue" => array("DateTimeValue" => isset($dateOfIssue) ? $dateOfIssue . 'T00:00:00.000Z' : ''),
 	  		"GIDVDateOfExpiry" => array("DateTimeValue" => isset($dateOfExpiry) ? $dateOfExpiry . 'T00:00:00.000Z' : ''),

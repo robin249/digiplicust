@@ -43,7 +43,6 @@
 	          <br>process your account
 	        </div>
 	      </div>
-        <a class="view-button" onclick="close_window();return false;">Done</a>
       </div>
     </div>
   </body>
