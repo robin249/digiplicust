@@ -65,6 +65,14 @@ option {
   text-align: center;
   color: green;
 }
+.field-icon {
+  float: right;
+  margin-right: 10px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
 </style>
 <!--<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">   </script>-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
@@ -414,7 +422,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="col-md-3 pl-0">
               <!--<input class="form-control" type="password" id=""  maxlength="9" placeholder="Tax Identification / Social Security Number" name="TIN"  />-->
-              <input id="tin" name="TIN" type="text" class="form-control form-control-lg ssnInputMask" placeholder="Tax ID / Social Security Number" autocomplete="off" required>
+              <input id="tin" name="TIN" type="password" class="form-control form-control-lg ssnInputMask" placeholder="Tax ID / Social Security Number" autocomplete="off" required>
+              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
             </div>
             <div class="col-md-6">
                <!--
@@ -568,6 +577,16 @@ $("#DDLActivites").selectpicker({
       $(".ssnInputMask").inputmask("999-99-9999");
     } else {
       $(".ssnInputMask").inputmask('remove');
+    }
+  });
+  $(".toggle-password").click(function() {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $("#tin");
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
     }
   });
 </script>
