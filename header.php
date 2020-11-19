@@ -18,6 +18,9 @@
       <script type="text/javascript" src="datepicker/bootstrap-datepicker.js"></script>
       <link rel="stylesheet" type="text/css" href="datepicker/bootstrap-datepicker.css" />
       <link rel="stylesheet" href="Phonejs/css/intlInputPhone.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
         <script type="text/javascript" src="datepicker/site.js"></script>
       <!--date picker close-->
       <script>
