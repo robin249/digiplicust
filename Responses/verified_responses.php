@@ -5,15 +5,15 @@
 		"grant_type" => "password",
 		"client_id" => "InsuroApi",
 		"client_secret" => "FA1770D12CF542EDB65884AA1E731B0B",
-		"scope" => "api openid",
+		"scope" => "api",
 		"username" => "DigiPliAPI",
 		"password" => "AP!account2",
 	);
 	$headers1 = array(
-		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
+		"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
 		"Content-Type: application/x-www-form-urlencoded"
   );
-	$accessToken = httpPost("https://aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
+	$accessToken = httpPost("https://test-aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
 	// echo $accessToken . "<br>";
 	// API 2 Get user detail
 	$clientId = "P4I1wQpTgmaergZ6DzcM";
@@ -71,11 +71,11 @@
 
 		// print_r($params3);
 		$headers3 = array(
-			"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
+			"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
 			"Authorization: Bearer $accessToken",
 			"Content-Type: application/json"
 	  );
-		$verifiedResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
+		$verifiedResponse = httpPutRaw("https://test-aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
 		// print_r($verifiedResponse);
 	  if ($verifiedResponse == 200) 
 	    $success = "Your record has been verified successfully!";
