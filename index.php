@@ -73,11 +73,15 @@ option {
   z-index: 2;
   cursor: pointer;
 }
+.alert-dismissable .close, .alert-dismissible .close {
+  padding: 0px !important;
+}
 </style>
 <!--<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">   </script>-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" />
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script>
   function insert_mask(str, index, value) {
@@ -188,17 +192,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
          </div>
          </br></br>
-        <div class="row">
-          <div class="col-md-12">
-
-            <?php if(isset($success)) { ?>
-              <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> <?php if(isset($success)){ echo $success; } ?>
-              </div>
-            <?php } ?>
+         <?php if(isset($alert_message)) { ?>
+         <?php $alert_class = "alert alert-$alert_type fade in alert-dismissible"; ?>
+           <div class="<?php echo $alert_class;?>" style="margin-top:18px;">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+              <strong><?php echo ($alert_type == 'success') ? 'Success!' : 'Error!' ?></strong> <?php if(isset($alert_message)){ echo $alert_message; } ?>
           </div>
-        </div>
+        <?php } ?>
+
          <div class="row">
             <div class="col-md-1">
                <select class="form-control" name="CustomerTitle" style="padding-right:0px;" id="title" required>

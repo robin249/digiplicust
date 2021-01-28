@@ -5,15 +5,15 @@
 		"grant_type" => "password",
 		"client_id" => "InsuroApi",
 		"client_secret" => "FA1770D12CF542EDB65884AA1E731B0B",
-		"scope" => "api",
+		"scope" => "api openid",
 		"username" => "DigiPliAPI",
 		"password" => "AP!account2",
 	);
 	$headers1 = array(
-		"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
+		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
 		"Content-Type: application/x-www-form-urlencoded"
   );
-	$accessToken = httpPost("https://test-aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
+	$accessToken = httpPost("https://aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
 	// echo $accessToken . "<br>";
 
 	// API2: Put Item
@@ -30,7 +30,7 @@
 		"Authorization: Bearer $accessToken",
 		"Content-Type: application/json"
   );
-	$putItem = httpPutRaw("https://test-aml.digipli.com:8080/api/Item/PutItem", json_encode($params2), $headers2);
+	$putItem = httpPutRaw("https://aml.digipli.com:8080/api/Item/PutItem", json_encode($params2), $headers2);
 	// print_r($putItem);
 	// echo "<br>";
 
@@ -84,14 +84,31 @@
 	);
 
 	$headers3 = array(
-		"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
+		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
 		"Authorization: Bearer $accessToken",
 		"Content-Type: application/json"
   );
-	$putResponse = httpPutRaw("https://test-aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
+	$putResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
 	// print_r($putResponse);
-  if ($putResponse == 200) 
-    $success = "Record has been created successfully!";
-  else
-    $success = "Something went wrong!";
+  $alert_type = "danger";
+  if ($putResponse == 200) {
+    // API4: GET Response Data
+    $headers4 = array(
+      "Authorization: Bearer $accessToken",
+     );
+    $getItem = httpGet("https://aml.digipli.com:8080/api/Responses/GetResponses?WorkflowKey=CustomerDueDiligence&ItemKey=$uniqItemId", $headers4);    
+
+    // print_r($getItem);
+    $res = json_decode($getItem);
+    $alert_type = "success";
+    $alert_message = "Thanks for your submission. Your application is being processed and you'll hear from us shortly";
+    if (isset($res->Responses)) {
+      if ($res->Responses->CustomerStatus->Value->SelectedItems[0] == 'sdi_CustomerStatusd6a86f69ca564c40959b18d75695eac9') {
+        $alert_message = 'Congratulations - your account was approved!';
+      }
+    }
+  }
+  else {
+    $alert_message = 'Something went wrong.';
+  }
 ?>
