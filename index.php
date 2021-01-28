@@ -8,7 +8,7 @@
 
   // unset($_SESSION["is_user"]);
   if (!isset($_SESSION['is_user'])) {
-    header('Location: ' . $domain . 'digiplicust/login.php');
+    header('Location: ' . $domain . 'login.php');
     // exit();
   }
   require_once('database.php');
