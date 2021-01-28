@@ -8,7 +8,7 @@
 
   // unset($_SESSION["is_user"]);
   if (!isset($_SESSION['is_user'])) {
-    header('Location: ' . $domain . 'login.php');
+    header('Location: ' . $domain . 'digiplicust/login.php');
     // exit();
   }
   require_once('database.php');
@@ -75,6 +75,17 @@ option {
 }
 .alert-dismissable .close, .alert-dismissible .close {
   padding: 0px !important;
+}
+.modal-header {
+  display: initial !important;
+}
+.modal-header .close {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.modal-center {
+  margin: 40px;
+  margin-left: 40%;
 }
 </style>
 <!--<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">   </script>-->
@@ -516,6 +527,35 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
          </br>
       </div>
    </form>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Your Application is Processing. Please wait!!</h4>
+      </div>
+      <div class="modal-body">
+        <span class="fa fa-spinner fa-spin fa-3x modal-center"></span>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('form').submit(function (e) {
+    e.target.checkValidity();
+    $('#myModal').modal('show');
+  });
+</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js"></script>
    <script>
     $(function(){$(".ssnInputMask").inputmask("999-99-9999")})
