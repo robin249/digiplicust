@@ -39,6 +39,7 @@
   $address = $_POST['PhysicalAddress'] . ' ' . $_POST['PhysicalAddressLine2'];
   $mailing_address = $_POST['MailingAddress'] . ' ' . $_POST['MailingAddressLine2'];
   list($DOBMonth, $DOBCalenderDays, $DOBYear) = explode('/', $date);
+  $dob = $DOBYear . '-' . $DOBMonth . '-' . $DOBCalenderDays . 'T00:00:00.000Z';
   $params3 = array(
   	"ItemId" => $uniqItemId, 
   	"WorkflowKey" => "CustomerDueDiligence", 
@@ -51,9 +52,7 @@
   		"CustomerOtherNameYN" => array("BitValue" => isset($_POST['CustomerOtherNameYN']) ? true : false), 
   		"OtherNameType" => array("SelectedItems" => isset($_POST['OtherNameType']) ? [$_POST['OtherNameType']] : ''), 
   		"CustomerOtherName" => array("Text" => isset($_POST['CustomerOtherName']) ? $_POST['CustomerOtherName'] : ''), 
-  		"DOBCalenderDays" => array("SelectedItems" => [$day_mask[$DOBCalenderDays]]), 
-  		"DOBMonth" => array("SelectedItems" => [$month_mask[$DOBMonth]]), 
-  		"DOBYear" => array("Text" => $DOBYear), 
+      "DOB" => array("DateTimeValue" => $dob), 
   		"Email" => array("Text" => $_POST['Email']), 
   		"PhoneCountryCodePrimary" => array("Text" => $_POST['PhoneCountryCodePrimary']), 
   		"CustomerPrimaryPhonenumber" => array("Text" => str_replace("-", "", $_POST['CustomerPrimaryPhonenumber'])), 
