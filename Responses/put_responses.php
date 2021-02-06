@@ -91,6 +91,8 @@
 	// print_r($putResponse);
   $alert_type = "danger";
   if ($putResponse == 200) {
+    //sleep for 30 seconds
+    sleep(30);
     // API4: GET Response Data
     $headers4 = array(
       "Authorization: Bearer $accessToken",
