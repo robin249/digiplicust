@@ -106,9 +106,9 @@
     if (isset($res->Responses)) {
       if ($res->Responses->CustomerStatus->Value->SelectedItems[0] == 'sdi_CustomerStatusd6a86f69ca564c40959b18d75695eac9') {
         $alert_message = 'Congratulations - your account was approved!';
-        echo("<script>location.href = '".$domain."/congratulations.php?code=success';</script>");
+        echo("<script>location.href = '".$domain."congratulations.php?code=success';</script>");
       } else {
-        echo("<script>location.href = '".$domain."/congratulations.php';</script>");
+        echo("<script>location.href = '".$domain."congratulations.php';</script>");
       }
     }
   }
