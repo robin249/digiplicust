@@ -91,8 +91,8 @@
 	// print_r($putResponse);
   $alert_type = "danger";
   if ($putResponse == 200) {
-    //sleep for 30 seconds
-    sleep(30);
+    //sleep for 10 seconds
+    sleep(10);
     // API4: GET Response Data
     $headers4 = array(
       "Authorization: Bearer $accessToken",
@@ -106,6 +106,9 @@
     if (isset($res->Responses)) {
       if ($res->Responses->CustomerStatus->Value->SelectedItems[0] == 'sdi_CustomerStatusd6a86f69ca564c40959b18d75695eac9') {
         $alert_message = 'Congratulations - your account was approved!';
+        echo("<script>location.href = '".$domain."/congratulations.php?code=success';</script>");
+      } else {
+        echo("<script>location.href = '".$domain."/congratulations.php';</script>");
       }
     }
   }
