@@ -48,34 +48,67 @@
 		$frontUrl = "images/front_$u_id.png";
 		$backUrl = "images/back_$u_id.png";
 
-		$params3 = array(
-	  	"ItemId" => $u_id, 
-	  	"WorkflowKey" => "CustomerDueDiligence", 
-	  	"Responses" => array(
-	  		"GIDVResults" => array("SelectedItems" => ['sdi_ab0a325d0ef0434c8f631eaae877a017']), 
-	  		"GIDVDocNumber" => array("Text" => isset($documentNumber) ? $documentNumber : ''),
-	  		"GIDVIssuingCountry" => array("SelectedItems" => isset($issuingCountry) ? [$country_sc_mask[$issuingCountry]] : ''),
-	  		"GIDVDocType" => array("Text" => isset($documentType) ? $documentType : ''),
-	  		"GIDVFirstName" => array("Text" => isset($firstName) ? $firstName : ''),
-	  		"GIDVLastName" => array("Text" => isset($lastName) ? $lastName : ''),
-	  		"GIDVFullName" => array("Text" => isset($fullName) ? $fullName : ''),
-	  		"GIDVFaceImage" => array("Text" => isset($faceImage) ? base64_to_jpeg($faceImage, $faceUrl, $domain) : ''),
-	  		"GIDVFrontImage" => array("Text" => isset($frontImage) ? base64_to_jpeg($frontImage, $frontUrl, $domain) : ''),
-	  		"GIDVBackImage" => array("Text" => isset($backImage) ? base64_to_jpeg($backImage, $backUrl, $domain) : ''),
-	  		"GIDVDOB" => array("DateTimeValue" => isset($dateOfBirth) ? $dateOfBirth . 'T00:00:00.000Z' : ''),
-	  		"GIDVDateOfIssue" => array("DateTimeValue" => isset($dateOfIssue) ? $dateOfIssue . 'T00:00:00.000Z' : ''),
-	  		"GIDVDateOfExpiry" => array("DateTimeValue" => isset($dateOfExpiry) ? $dateOfExpiry . 'T00:00:00.000Z' : ''),
-	  		"GIDVIssuingJurisdiction" => array("Text" => isset($jurisdiction) ? $jurisdiction : '')
-			)
-		);
+        // API3: GET Item Data
+        $headers3 = array(
+          "Authorization: Bearer $accessToken",
+         );
+        $getItem = httpGet("https://aml.digipli.com:8080/api/Responses/GetItemById?ItemId=$u_id", $headers3);
 
-		// print_r($params3);
-		$headers3 = array(
+        // print_r($getItem);
+        $res = json_decode($getItem);
+
+        if ($res->WorkflowKey == 'CustomerDueDiligence') {
+            $params4 = array(
+            "ItemId" => $u_id,
+            "WorkflowKey" => $res->WorkflowKey,
+            "Responses" => array(
+                "GIDVResults" => array("SelectedItems" => ['sdi_ab0a325d0ef0434c8f631eaae877a017']),
+                "GIDVDocNumber" => array("Text" => isset($documentNumber) ? $documentNumber : ''),
+                "GIDVIssuingCountry" => array("SelectedItems" => isset($issuingCountry) ? [$country_sc_mask[$issuingCountry]] : ''),
+                "GIDVDocType" => array("Text" => isset($documentType) ? $documentType : ''),
+                "GIDVFirstName" => array("Text" => isset($firstName) ? $firstName : ''),
+                "GIDVLastName" => array("Text" => isset($lastName) ? $lastName : ''),
+                "GIDVFullName" => array("Text" => isset($fullName) ? $fullName : ''),
+                "GIDVFaceImage" => array("Text" => isset($faceImage) ? base64_to_jpeg($faceImage, $faceUrl, $domain) : ''),
+                "GIDVFrontImage" => array("Text" => isset($frontImage) ? base64_to_jpeg($frontImage, $frontUrl, $domain) : ''),
+                "GIDVBackImage" => array("Text" => isset($backImage) ? base64_to_jpeg($backImage, $backUrl, $domain) : ''),
+                "GIDVDOB" => array("DateTimeValue" => isset($dateOfBirth) ? $dateOfBirth . 'T00:00:00.000Z' : ''),
+                "GIDVDateOfIssue" => array("DateTimeValue" => isset($dateOfIssue) ? $dateOfIssue . 'T00:00:00.000Z' : ''),
+                "GIDVDateOfExpiry" => array("DateTimeValue" => isset($dateOfExpiry) ? $dateOfExpiry . 'T00:00:00.000Z' : ''),
+                "GIDVIssuingJurisdiction" => array("Text" => isset($jurisdiction) ? $jurisdiction : '')
+                )
+            );
+        } else {
+            $params4 = array(
+            "ItemId" => $u_id,
+            "WorkflowKey" => $res->WorkflowKey,
+            "Responses" => array(
+                "RPVerificationStatus" => array("SelectedItems" => ['sdi_ab0a325d0ef0434c8f631eaae877a017']),
+                "RPIDdocNumber" => array("Text" => isset($documentNumber) ? $documentNumber : ''),
+                "RPIDCountry" => array("SelectedItems" => isset($issuingCountry) ? [$country_sc_mask[$issuingCountry]] : ''),
+                "RPIDDocType" => array("Text" => isset($documentType) ? $documentType : ''),
+                "RPIDFirrstName" => array("Text" => isset($firstName) ? $firstName : ''),
+                "RPIDLastName" => array("Text" => isset($lastName) ? $lastName : ''),
+                "RPIDFullName" => array("Text" => isset($fullName) ? $fullName : ''),
+                "RPIDCustomerFaceImage" => array("Text" => isset($faceImage) ? base64_to_jpeg($faceImage, $faceUrl, $domain) : ''),
+                "RPIDImageFront" => array("Text" => isset($frontImage) ? base64_to_jpeg($frontImage, $frontUrl, $domain) : ''),
+                "RPIDImageBack" => array("Text" => isset($backImage) ? base64_to_jpeg($backImage, $backUrl, $domain) : ''),
+                "RPIDDOB" => array("DateTimeValue" => isset($dateOfBirth) ? $dateOfBirth . 'T00:00:00.000Z' : ''),
+                "RPIDDateofIssue" => array("DateTimeValue" => isset($dateOfIssue) ? $dateOfIssue . 'T00:00:00.000Z' : ''),
+                "RPIDdateofExpiry" => array("DateTimeValue" => isset($dateOfExpiry) ? $dateOfExpiry . 'T00:00:00.000Z' : ''),
+                "RPIDJuris" => array("Text" => isset($jurisdiction) ? $jurisdiction : '')
+                )
+            );
+
+        }
+
+		// print_r($params4);
+		$headers4 = array(
 			"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
 			"Authorization: Bearer $accessToken",
 			"Content-Type: application/json"
 	  );
-		$verifiedResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
+		$verifiedResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params4), $headers4);
 		// print_r($verifiedResponse);
 	  if ($verifiedResponse == 200) 
 	    $success = "Your record has been verified successfully!";
