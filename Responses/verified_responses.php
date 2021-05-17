@@ -13,7 +13,7 @@
 		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
 		"Content-Type: application/x-www-form-urlencoded"
   );
-	$accessToken = httpPost("https://aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
+	$accessToken = httpPost("$api_domain/RegTechOneAuth/connect/token", $params1, $headers1);
 	// echo $accessToken . "<br>";
 	// API 2 Get user detail
 	$clientId = "P4I1wQpTgmaergZ6DzcM";
@@ -52,7 +52,7 @@
         $headers3 = array(
           "Authorization: Bearer $accessToken",
          );
-        $getItem = httpGet("https://aml.digipli.com:8080/api/item/GetItemById?ItemId=$u_id", $headers3);
+        $getItem = httpGet("$api_domain:8080/api/item/GetItemById?ItemId=$u_id", $headers3);
 
         // print_r($getItem);
         $getRes = json_decode($getItem);
@@ -108,7 +108,7 @@
 			"Authorization: Bearer $accessToken",
 			"Content-Type: application/json"
 	  );
-		$verifiedResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params4), $headers4);
+		$verifiedResponse = httpPutRaw("$api_domain:8080/api/Responses/PutResponses", json_encode($params4), $headers4);
 		// print_r($verifiedResponse);
 	  if ($verifiedResponse == 200) 
 	    $success = "Your record has been verified successfully!";

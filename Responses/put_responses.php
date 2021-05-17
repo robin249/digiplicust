@@ -13,7 +13,7 @@
 		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
 		"Content-Type: application/x-www-form-urlencoded"
   );
-	$accessToken = httpPost("https://aml.digipli.com/RegTechOneAuth/connect/token", $params1, $headers1);
+	$accessToken = httpPost("$api_domain/RegTechOneAuth/connect/token", $params1, $headers1);
 	// echo $accessToken . "<br>";
 
 	// API2: Put Item
@@ -30,7 +30,7 @@
 		"Authorization: Bearer $accessToken",
 		"Content-Type: application/json"
   );
-	$putItem = httpPutRaw("https://aml.digipli.com:8080/api/Item/PutItem", json_encode($params2), $headers2);
+	$putItem = httpPutRaw("$api_domain:8080/api/Item/PutItem", json_encode($params2), $headers2);
 	// print_r($putItem);
 	// echo "<br>";
 
@@ -87,7 +87,7 @@
 		"Authorization: Bearer $accessToken",
 		"Content-Type: application/json"
   );
-	$putResponse = httpPutRaw("https://aml.digipli.com:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
+	$putResponse = httpPutRaw("$api_domain:8080/api/Responses/PutResponses", json_encode($params3), $headers3);
 	// print_r($putResponse);
   $alert_type = "danger";
   if ($putResponse == 200) {
@@ -97,7 +97,7 @@
     $headers4 = array(
       "Authorization: Bearer $accessToken",
      );
-    $getItem = httpGet("https://aml.digipli.com:8080/api/Responses/GetResponses?WorkflowKey=CustomerDueDiligence&ItemKey=$uniqItemId", $headers4);    
+    $getItem = httpGet("$api_domain:8080/api/Responses/GetResponses?WorkflowKey=CustomerDueDiligence&ItemKey=$uniqItemId", $headers4);
 
     // print_r($getItem);
     $res = json_decode($getItem);
