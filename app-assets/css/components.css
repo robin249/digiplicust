@@ -203,7 +203,7 @@ html p {
 }
 
 html .bg-full-screen-image {
-  background : url(../../app-assets/images/pages/auth-bg.jpg) no-repeat center center;
+  background : url(../images/auth-bg.jpg) no-repeat center center;
   background-size : cover;
 }
 

@@ -81,13 +81,17 @@
 <body>
   <?php
     session_start();
+
+    require_once('domain.php');
+
     $getfile = file_get_contents('fi_institutions.json');
     $jsonfile = json_decode($getfile);
 
-    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
-    $hostName = $_SERVER['HTTP_HOST'];
-    $domain = $protocol.'://'.$hostName."/";
-    // print_r($jsonfile);
+    // unset($_SESSION["fi_user"]);
+    if (!isset($_SESSION['fi_user'])) {
+      header('Location: ' . $domain . 'signin.php');
+      // exit();
+    }
 
     // add new record
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["add"])) {
