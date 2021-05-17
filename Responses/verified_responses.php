@@ -52,15 +52,15 @@
         $headers3 = array(
           "Authorization: Bearer $accessToken",
          );
-        $getItem = httpGet("https://aml.digipli.com:8080/api/Responses/GetItemById?ItemId=$u_id", $headers3);
+        $getItem = httpGet("https://aml.digipli.com:8080/api/item/GetItemById?ItemId=$u_id", $headers3);
 
         // print_r($getItem);
-        $res = json_decode($getItem);
+        $getRes = json_decode($getItem);
 
-        if ($res->WorkflowKey == 'CustomerDueDiligence') {
+        if ($getRes->WorkflowKey == 'CustomerDueDiligence') {
             $params4 = array(
             "ItemId" => $u_id,
-            "WorkflowKey" => $res->WorkflowKey,
+            "WorkflowKey" => $getRes->WorkflowKey,
             "Responses" => array(
                 "GIDVResults" => array("SelectedItems" => ['sdi_ab0a325d0ef0434c8f631eaae877a017']),
                 "GIDVDocNumber" => array("Text" => isset($documentNumber) ? $documentNumber : ''),
@@ -81,7 +81,7 @@
         } else {
             $params4 = array(
             "ItemId" => $u_id,
-            "WorkflowKey" => $res->WorkflowKey,
+            "WorkflowKey" => $getRes->WorkflowKey,
             "Responses" => array(
                 "RPVerificationStatus" => array("SelectedItems" => ['sdi_ab0a325d0ef0434c8f631eaae877a017']),
                 "RPIDdocNumber" => array("Text" => isset($documentNumber) ? $documentNumber : ''),
@@ -116,3 +116,4 @@
 	    $success = "Something went wrong!";
   }
 ?>
+
