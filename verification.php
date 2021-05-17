@@ -1,11 +1,9 @@
 <?php
   require_once('lib/request.php');
+  require_once('domain.php');
 	if($_GET['u_id']) {
 		// echo $_GET['u_id']; verificationUrl
 		$u_id = $_GET['u_id'];
-		$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
-		$hostName = $_SERVER['HTTP_HOST'];
-		$domain = $protocol.'://'.$hostName."/";
 		$redirectUrl = $domain . "success.php?u_id=$u_id";
 
 		$clientId = "P4I1wQpTgmaergZ6DzcM";

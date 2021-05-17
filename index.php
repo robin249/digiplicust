@@ -1,10 +1,7 @@
 <?php 
   session_start();
   $_SESSION['test_user'] = 'testing';
-
-  $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
-  $hostName = $_SERVER['HTTP_HOST'];
-  $domain = $protocol.'://'.$hostName."/";
+  require_once('domain.php');
 
   // unset($_SESSION["is_user"]);
   if (!isset($_SESSION['is_user'])) {
