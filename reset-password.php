@@ -1,3 +1,51 @@
+<?php
+    require_once('domain.php');
+
+    $is_valid_token = null;
+    // reset password token
+    $token = $_GET['token'];
+    if(isset($token)) {
+      $file = file_get_contents('ln_cred.json');
+      $data = json_decode($file, true);
+
+      foreach ($data as $key => $items) {
+        if ($items['token'] === $token) {
+          $is_valid_token = $items;
+
+          // We found a match so let's break the loop
+          break;
+        }
+      }
+    }
+
+    if (!$is_valid_token) {
+      $alert_type = 'danger';
+      $alert_message = "Reset password token is invalid or expired. Please click <a href='$domain/forgot-password.php'>here</a> to regenerate the token.";
+    }
+
+    // reset password submit
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $password = $_POST['password'];
+      $confirm_password = $_POST['confirm_password'];
+      if ($password === $confirm_password) {
+
+        // update new password
+        $update_arr = array(
+          'email' => $is_valid_token['email'],
+          'password' => $password
+        );
+        $data[$key] = $update_arr;
+        //encode back to json
+        $data_array = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents('ln_cred.json', $data_array);
+        $alert_type = 'success';
+        $alert_message = 'New password has been reset successfully. Now you can login with your latest credentials.';
+      } else {
+        $alert_type = 'danger';
+        $alert_message = "New password and confirm password does not match.";
+      }
+    }
+  ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,7 +57,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="RAMBEE INC">
-    <title>Reset Password - Dealer Talk - Vendor Management System</title>
+    <title>Digipli | Reset Password</title>
     <link rel="apple-touch-icon" href="https://digiplicustomerdata.azurewebsites.net/DigiPli1.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://dt-dash.rambee.website/rambee/html/ltr/images/DT%20vendor.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -51,55 +99,7 @@
 <!-- BEGIN: Body-->
 
 <body class="horizontal-layout horizontal-menu navbar-static 1-column   footer-static bg-full-screen-image  blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
-  <?php
 
-    require_once('domain.php');
-
-    $is_valid_token = null;
-    // reset password token
-    $token = $_GET['token'];
-    if(isset($token)) {      
-      $file = file_get_contents('ln_cred.json');
-      $data = json_decode($file, true);
-
-      foreach ($data as $key => $items) {
-        if ($items['token'] === $token) {
-          $is_valid_token = $items;
-
-          // We found a match so let's break the loop
-          break;
-        }
-      }
-    }
-
-    if (!$is_valid_token) {
-      $alert_type = 'danger';
-      $alert_message = "Reset password token is invalid or expired. Please click <a href='$domain/forgot-password.php'>here</a> to regenerate the token.";
-    }
-
-    // reset password submit
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $password = $_POST['password'];
-      $confirm_password = $_POST['confirm_password'];
-      if ($password === $confirm_password) {
-
-        // update new password
-        $update_arr = array(
-          'email' => $is_valid_token['email'],
-          'password' => $password
-        );
-        $data[$key] = $update_arr;
-        //encode back to json
-        $data_array = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents('ln_cred.json', $data_array);
-        $alert_type = 'success';
-        $alert_message = 'New password has been reset successfully. Now you can login with your latest credentials.';
-      } else {
-        $alert_type = 'danger';
-        $alert_message = "New password and confirm password does not match.";        
-      }
-    }
-  ?>
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>

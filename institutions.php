@@ -1,3 +1,79 @@
+<?php
+    session_start();
+
+    require_once('domain.php');
+
+    $getfile = file_get_contents('fi_institutions.json');
+    $jsonfile = json_decode($getfile);
+
+    // unset($_SESSION["fi_user"]);
+    if (!isset($_SESSION['fi_user'])) {
+      header('Location: ' . $domain . 'signin.php');
+      // exit();
+    }
+
+    // add new record
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["add"])) {
+      $file = file_get_contents('fi_institutions.json');
+      $data = json_decode($file, true);
+      unset($_POST["add"]);
+      $data = array_values($data);
+      array_push($data, $_POST);
+      // print_r($data);
+      // echo 'robin';
+      // print_r($_POST);
+      $data = json_encode($data, JSON_PRETTY_PRINT);
+      // echo "<br>";
+      // print_r($data);
+      file_put_contents("fi_institutions.json", $data);
+      $_SESSION['message'] = "Record has been created successfully!";
+      header('Location: ' . $domain . 'institutions.php');
+      // echo("<script>location.href = '".$domain."institutions.php';</script>");
+    }
+    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_SESSION['message'])) {
+      unset($_SESSION['message']);
+    }
+
+    // delete record
+    if (isset($_GET["delete_id"])) {
+      $delete_id = $_GET['delete_id'];
+      $data = file_get_contents('fi_institutions.json');
+      $data = json_decode($data, true);
+
+      unset($data[$delete_id]);
+
+      //encode back to json
+      $data = json_encode($data, JSON_PRETTY_PRINT);
+      file_put_contents('fi_institutions.json', $data);
+      $_SESSION['message'] = "Record has been deleted successfully!";
+      header('Location: ' . $domain . 'institutions.php');
+    }
+
+    // update record
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["edit"])) {
+      $edit_id = $_GET['id'];
+      //get json data
+      $data = file_get_contents('fi_institutions.json');
+      $data_array = json_decode($data, true);
+      // $row = $data_array[$edit_id];
+      $update_arr = array(
+        'fi' => $_POST['fi'],
+        'fi_code' => $_POST['fi_code'],
+        'endpoint' => $_POST['endpoint'],
+        'user_id' => $_POST['user_id'],
+        'client_secret' => $_POST['client_secret'],
+        'scope' => $_POST['scope'],
+        'username' => $_POST['username'],
+        'password' => $_POST['password']
+      );
+      $data_array[$edit_id] = $update_arr;
+      //encode back to json
+      $data = json_encode($data_array, JSON_PRETTY_PRINT);
+      file_put_contents('fi_institutions.json', $data);
+      $_SESSION['message'] = "Record has been updated successfully!";
+      header('Location: ' . $domain . 'institutions.php');
+    }
+  ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,7 +85,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="author" content="RAMBEE INC">
-  <title>DigiPli Authenteq UI App</title>
+  <title>Digipli | Institutions</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="https://digiplicustomerdata.azurewebsites.net/DigiPli1.png">
   <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -79,82 +155,6 @@
 
 <!-- BEGIN: Body-->
 <body>
-  <?php
-    session_start();
-
-    require_once('domain.php');
-
-    $getfile = file_get_contents('fi_institutions.json');
-    $jsonfile = json_decode($getfile);
-
-    // unset($_SESSION["fi_user"]);
-    if (!isset($_SESSION['fi_user'])) {
-      header('Location: ' . $domain . 'signin.php');
-      // exit();
-    }
-
-    // add new record
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["add"])) {
-      $file = file_get_contents('fi_institutions.json');
-      $data = json_decode($file, true);
-      unset($_POST["add"]);
-      $data = array_values($data);
-      array_push($data, $_POST);
-      // print_r($data);
-      // echo 'robin';
-      // print_r($_POST);
-      $data = json_encode($data, JSON_PRETTY_PRINT);
-      // echo "<br>";      
-      // print_r($data);
-      file_put_contents("fi_institutions.json", $data);
-      $_SESSION['message'] = "Record has been created successfully!";
-      header('Location: ' . $domain . 'institutions.php');
-      // echo("<script>location.href = '".$domain."institutions.php';</script>");
-    }
-    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_SESSION['message'])) {
-      unset($_SESSION['message']); 
-    }
-
-    // delete record
-    if (isset($_GET["delete_id"])) {
-      $delete_id = $_GET['delete_id'];
-      $data = file_get_contents('fi_institutions.json');
-      $data = json_decode($data, true);
-
-      unset($data[$delete_id]);
-
-      //encode back to json
-      $data = json_encode($data, JSON_PRETTY_PRINT);
-      file_put_contents('fi_institutions.json', $data);
-      $_SESSION['message'] = "Record has been deleted successfully!";
-      header('Location: ' . $domain . 'institutions.php');
-    }
-
-    // update record
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["edit"])) {
-      $edit_id = $_GET['id'];
-      //get json data
-      $data = file_get_contents('fi_institutions.json');
-      $data_array = json_decode($data, true);
-      // $row = $data_array[$edit_id];
-      $update_arr = array(
-        'fi' => $_POST['fi'],
-        'fi_code' => $_POST['fi_code'],
-        'endpoint' => $_POST['endpoint'],
-        'user_id' => $_POST['user_id'],
-        'client_secret' => $_POST['client_secret'],
-        'scope' => $_POST['scope'],
-        'username' => $_POST['username'],
-        'password' => $_POST['password']
-      );
-      $data_array[$edit_id] = $update_arr;
-      //encode back to json
-      $data = json_encode($data_array, JSON_PRETTY_PRINT);
-      file_put_contents('fi_institutions.json', $data);
-      $_SESSION['message'] = "Record has been updated successfully!";
-      header('Location: ' . $domain . 'institutions.php');
-    }
-  ?>
 
   <!-- BEGIN: Content-->
   <div class="bdy">

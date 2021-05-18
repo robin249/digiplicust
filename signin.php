@@ -1,3 +1,35 @@
+<?php
+    session_start();
+
+    require_once('domain.php');
+
+    if (isset($_SESSION['fi_user'])) {
+      header('Location: ' . $domain . 'institutions.php');
+    }
+
+    // check login with credentials
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $file = file_get_contents('ln_cred.json');
+      $data = json_decode($file, true);
+      $match = null;
+      foreach ($data as $key => $items) {
+        if ($items['email'] === $_POST['email']) {
+          if ($items['password'] === $_POST['password']) {
+            $match = $items;
+            // We found a match so let's break the loop
+            break;
+          }
+        }
+      }
+
+      if (!$match) {
+        $error = "Invalid username and password.";
+      } else {
+        $_SESSION['fi_user'] = 'true';
+        header('Location: ' . $domain . 'institutions.php');
+      }
+    }
+  ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,7 +41,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="RAMBEE INC">
-    <title>Login - Dealer Talk - Vendor Management System</title>
+    <title>Digipli | Login</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://digiplicustomerdata.azurewebsites.net/DigiPli1.png">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -59,38 +91,7 @@
 <!-- BEGIN: Body-->
 
 <body class="horizontal-layout horizontal-menu navbar-static 1-column   footer-static bg-full-screen-image  blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
-  <?php
-    session_start();
 
-    require_once('domain.php');
-
-    if (isset($_SESSION['fi_user'])) {
-      header('Location: ' . $domain . 'institutions.php');
-    }
-
-    // check login with credentials
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $file = file_get_contents('ln_cred.json');
-      $data = json_decode($file, true);
-      $match = null;
-      foreach ($data as $key => $items) {
-        if ($items['email'] === $_POST['email']) {
-          if ($items['password'] === $_POST['password']) {
-            $match = $items;
-            // We found a match so let's break the loop
-            break;
-          }
-        }
-      }
-
-      if (!$match) {
-        $error = "Invalid username and password.";
-      } else {        
-        $_SESSION['fi_user'] = 'true';
-        header('Location: ' . $domain . 'institutions.php');
-      }
-    }
-  ?>
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
