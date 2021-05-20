@@ -13,7 +13,8 @@
 	} 
 	else {
 		$u_id = $_GET['u_id'];
-		header('Location: ' . $domain . 'tryagain.php?u_id=' . $u_id);
+		$fi_id = $_GET['fi_id'];
+		header('Location: ' . $domain . 'tryagain.php?u_id=' . $u_id . '&fi_id=' . $fi_id);
 	}
 ?>
 

@@ -4,7 +4,8 @@
   require_once('domain.php');
 
   $u_id = $_GET['u_id'];
-  $verification_url = $domain . 'verification.php?u_id=' . $u_id;
+  $fi_id = $_GET['fi_id'];
+  $verification_url = $domain . "verification.php?u_id=$u_id&fi_id=$fi_id";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
