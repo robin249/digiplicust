@@ -1,6 +1,5 @@
 <?php
   // To get the api endpoint from json file
-  $fi_id = $_GET['fi_id'];
 
   $file = file_get_contents('fi_institutions.json');
   $data = json_decode($file, true);
@@ -41,9 +40,8 @@
     // API 2 Get user detail
     $clientId = "P4I1wQpTgmaergZ6DzcM";
     $clientSecret = "he64wgL7SI7sku3BIs1UVhm79LbBmCiAgXyTzMPq";
-    $u_id = $_GET['u_id'];
     $code = $_GET['code'];
-    $redirectUrl = $domain . "success.php?u_id=$u_id&fi_id=$fi_id";
+    $redirectUrl = $domain . "success.php?u_id=$queryStringUid";
 
     $headers2 = array(
       "Authorization: Basic " . base64_encode("$clientId:$clientSecret"),

@@ -4,16 +4,17 @@
   require_once('domain.php');
 
   $loginURL = $domain . 'login.php';
+  $success = "System is verifying your record...";
 
-	$success = "System is verifying your record...";
-	// print_r($_GET);
+  $queryStringUid = $_GET['u_id'];
+  $queryString = explode("-",$queryStringUid);
+  $u_id = $queryString[0];
+  $fi_id = $queryString[1];
 	if(isset($_GET['code'])) {
   	require_once('Masking/country_sc.php');
 		require_once('Responses/verified_responses.php');
 	} 
 	else {
-		$u_id = $_GET['u_id'];
-		$fi_id = $_GET['fi_id'];
 		header('Location: ' . $domain . 'tryagain.php?u_id=' . $u_id . '&fi_id=' . $fi_id);
 	}
 ?>

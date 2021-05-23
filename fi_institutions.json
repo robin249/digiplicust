@@ -1,13 +1,13 @@
 {
     "1": {
-        "fi": "HDFC",
-        "fi_code": "944",
-        "endpoint": "hdfc.azurewebsites.net",
-        "user_id": "43A4C9E4-65A3-4428-94DE-6677D3F1HDFC",
-        "client_secret": "FA1770D12CF542EDB65884AA1E731BFC",
-        "scope": "api openid",
-        "username": "DigiPliAPi",
-        "password": "AP!account1"
+        "fi": "Demo Server",
+        "fi_code": "001",
+        "endpoint": "https://aml.digipli.com",
+        "user_id": "43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
+        "client_secret": "FA1770D12CF542EDB65884AA1E731B0B",
+        "scope": "api",
+        "username": "DigiPliAPI",
+        "password": "AP!account2"
     },
     "2": {
         "fi": "icici",

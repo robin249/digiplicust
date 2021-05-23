@@ -5,12 +5,12 @@
 		"grant_type" => "password",
 		"client_id" => "InsuroApi",
 		"client_secret" => "FA1770D12CF542EDB65884AA1E731B0B",
-		"scope" => "api openid",
+		"scope" => "api",
 		"username" => "DigiPliAPI",
 		"password" => "AP!account2",
 	);
 	$headers1 = array(
-		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
+		"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
 		"Content-Type: application/x-www-form-urlencoded"
   );
 	$accessToken = httpPost("$api_domain/RegTechOneAuth/connect/token", $params1, $headers1);
@@ -83,7 +83,7 @@
 	);
 
 	$headers3 = array(
-		"UserId: 8010d7fc-f30e-4475-bb1c-3de7d29ebd18",
+		"UserId: 43A4C9E4-65A3-4428-94DE-6677D3F14DDC",
 		"Authorization: Bearer $accessToken",
 		"Content-Type: application/json"
   );

@@ -5,7 +5,7 @@
 		// echo $_GET['u_id']; verificationUrl
 		$u_id = $_GET['u_id'];
 		$fi_id = $_GET['fi_id'];
-		$redirectUrl = $domain . "success.php?u_id=$u_id&fi_id=$fi_id";
+		$redirectUrl = $domain . "success.php?u_id=$u_id-$fi_id";
 
 		$clientId = "P4I1wQpTgmaergZ6DzcM";
 		$clientSecret = "he64wgL7SI7sku3BIs1UVhm79LbBmCiAgXyTzMPq";
